@@ -8,5 +8,6 @@
     "typescript", // 타입스크립트 파일에서 ESLint 활성화
     "typescriptreact", // React 타입스크립트 파일에서 ESLint 활성화
   ],
-  "eslint.run": "onType" // 타이핑 중에 ESLint를 실시간으로 적용
+  "eslint.run": "onType",
+  "files.eol": "\n" // 타이핑 중에 ESLint를 실시간으로 적용
 }
