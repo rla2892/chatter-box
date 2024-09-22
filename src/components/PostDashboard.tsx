@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react'
 import PostList from './PostList'
 import { PostType, PostsResponse } from '../types'
-// import Post from './Post'
-// import { PostType } from '../types'
 
 export default function PostDashboard() {
     const [posts, setPosts] = useState<PostType[]>([])
@@ -38,24 +36,3 @@ export default function PostDashboard() {
         {!loading && !error && <PostList posts={posts} />}
     </>
 }
-
-// const PostList: React.FC<PostListProps> = ({ posts }) => {
-//     return (
-//         <div>
-//             {posts.map((post: PostType) => (
-//                 <Post
-//                     key={post.id}
-//                     id={post.id}
-//                     userId={post.userId}
-//                     title={post.title}
-//                     content={post.content}
-//                     image={post.image}
-//                     createdAt={post.createdAt}
-//                     likes={post.likes}
-//                 />
-//             ))}
-//         </div>
-//     )
-// }
-
-// export default PostList
