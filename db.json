@@ -1,0 +1,13 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "johndoe@test.com",
+            "password": "password"
+        }
+    ],
+    "posts": [],
+    "comments": [],
+    "messages": []
+}
