@@ -14,8 +14,8 @@
 - **Real-Time Notifications**: Receive real-time notifications for new followers, comments, likes, and more.
 - **Comments & Replies**: Comment on posts and reply to other comments.
 - **Messaging**: 1:1 and group chat functionalities for direct communication.
-- **Search & Tags**: Search for users, hashtags, and keywords to discover content.
-- **Admin Tools**: Monitor content and manage inappropriate posts or comments.
+<!-- - **Search & Tags**: Search for users, hashtags, and keywords to discover content. -->
+<!-- - **Admin Tools**: Monitor content and manage inappropriate posts or comments. -->
 
 ## Technology Stack
 
