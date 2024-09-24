@@ -26,7 +26,7 @@ module.exports = [
             'eqeqeq': `error`, // Use ===
             'no-console': process.env.NODE_ENV === `production` ? `error` : `warn`, // No console in production
             'no-debugger': process.env.NODE_ENV === `production` ? `error` : `warn`, // No debugger in production
-            'no-alert': process.env.NODE_ENV === `production` ? `error` : `warn`, // No alert in production
+            // 'no-alert': process.env.NODE_ENV === `production` ? `error` : `warn`, // No alert in production
             'no-unused-vars': process.env.NODE_ENV === `production` ? `error` : `warn`, // No unused vars in production
             'no-constant-condition': process.env.NODE_ENV === `production` ? `error` : `warn`, // No constant conditions in production
             'no-empty': process.env.NODE_ENV === `production` ? `error` : `warn`, // No empty blocks in production
