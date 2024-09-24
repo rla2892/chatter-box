@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Link from "next/link";
+import Link from "next/link"
 
 export const metadata: Metadata = {
     title: `Chatter Box`,
@@ -12,13 +12,13 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const session = false; // TODO: 세션 정보를 가져오는 로직을 작성합니다.
-    const signIn = () => {
-        console.log("로그인 버튼이 클릭되었습니다.");
-    }
-    const signOut = () => {
-        console.log("로그아웃 버튼이 클릭되었습니다.");
-    }
+    const session = false // TODO: 세션 정보를 가져오는 로직을 작성합니다.
+    // const signIn = () => {
+    //     console.log(`로그인 버튼이 클릭되었습니다.`)
+    // }
+    // const signOut = () => {
+    //     console.log(`로그아웃 버튼이 클릭되었습니다.`)
+    // }
 
     return (
         <html lang="en">

@@ -10,6 +10,7 @@ module.exports = [
             sourceType: `module`,
             globals: {
                 ...globals.node, // Add Node.js globals
+                ...globals.browser, // Add browser globals
                 React: `readonly`, // React is read-only
             },
             parser: typescriptParser, // Use TypeScript parser

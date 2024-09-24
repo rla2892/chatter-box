@@ -26,7 +26,7 @@ const Post: React.FC<PostProps> = ({ id, userId, content, image, createdAt, like
                 throw new Error(`좋아요 업데이트에 실패했습니다.`)
             }
         } catch (error) {
-            console.error(`좋아요 업데이트 실패:`, error)
+            alert(`좋아요 업데이트에 실패했습니다. ${error}`)
             setLikeCount(likeCount) // 오류 발생 시 원래 좋아요 수로 되돌림
         }
     }
