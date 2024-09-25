@@ -6,7 +6,7 @@ import { PostType } from '../types'
 
 type PostProps = PostType;
 
-const Post: React.FC<PostProps> = ({ id, userId, content, image, createdAt, likes }) => {
+export default function Post({ id, userId, content, image, createdAt, likes }: PostProps) {
     const [likeCount, setLikeCount] = useState<number>(likes)
 
     const handleLike = async () => {
@@ -70,5 +70,3 @@ const Post: React.FC<PostProps> = ({ id, userId, content, image, createdAt, like
         </div>
     )
 }
-
-export default Post
