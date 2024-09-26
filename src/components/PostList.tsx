@@ -5,7 +5,7 @@ export type PostListProps = {
     posts: PostType[];
 };
 
-const PostList: React.FC<PostListProps> = ({ posts }) => {
+export default function PostList({ posts }: PostListProps) {
     return (
         <div>
             {posts.map((post: PostType) => (
@@ -24,4 +24,4 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
     )
 }
 
-export default PostList
+
