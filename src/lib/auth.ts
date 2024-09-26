@@ -18,10 +18,6 @@ export const handlers = NextAuth({
                 },
             },
             authorize: async (credentials, req) => {
-                const inputCsrfToken = req?.body?.csrfToken
-                console.log(`inputCsrfToken`, inputCsrfToken)
-                const csrfToken = await getCsrfToken()
-                console.log(`csrfToken`, csrfToken)
                 const allUsers = await getAllUsers()
                 const inputEmail = credentials?.email ?? ``
                 const inputPassword = credentials?.password ?? ``
