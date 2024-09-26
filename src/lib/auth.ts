@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { getAllUsers } from './db'
-import { getCsrfToken } from 'next-auth/react'
 
 export const handlers = NextAuth({
     providers: [
@@ -32,23 +31,6 @@ export const handlers = NextAuth({
             }
         })
     ],
-    session: {
-        strategy: `jwt`,
-    },
-    // callbacks: {
-    //     async jwt({ token, user }) {
-    //         if (user) {
-    //             token.id = user.id
-    //         }
-    //         return token
-    //     },
-    //     async session({ session, token }) {
-    //         if (token && session.user) {
-    //             session.user.id = token.id as string
-    //         }
-    //         return session
-    //     },
-    // },
     pages: {
         signIn: `/auth/signin`,
         signOut: `/auth/signout`,
