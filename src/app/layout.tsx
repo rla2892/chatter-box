@@ -40,11 +40,14 @@ export default function RootLayout({
                                 </button>
                             </>
                         ) : (
-                            <button
-                                className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                            >
+                            <Link href="/auth/signin" className="hover:underline">
                                 로그인
-                            </button>
+                            </Link>
+                            // <button
+                            //     className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+                            // >
+                            //     로그인
+                            // </button>
                         )}
                     </nav>
                 </header>
