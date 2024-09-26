@@ -1,17 +1,12 @@
 "use client"
-import { getCsrfToken, signIn } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { signIn } from "next-auth/react"
+import { useState } from "react"
 
 export default function LoginForm() {
     const [email, setEmail] = useState<string>(``)
     const [password, setPassword] = useState<string>(``)
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
-    const [csrfToken, setCsrfToken] = useState<string>(``)
-
-    useEffect(() => {
-        getCsrfToken().then((newCsrfToken) => setCsrfToken(newCsrfToken || ``))
-    }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -19,6 +14,7 @@ export default function LoginForm() {
         setError(null)
 
         const res = await signIn(`credentials`, {
+            // csrfToken, // CSRF 토큰은 자동으로 추가됨 (by next-auth signIn)
             redirect: false,
             email,
             password,
@@ -35,7 +31,6 @@ export default function LoginForm() {
     }
 
     return <form onSubmit={handleSubmit} className="flex flex-col max-w-lg">
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <label className="mb-2">
             이메일
             <input
