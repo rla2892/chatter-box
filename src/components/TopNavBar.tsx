@@ -1,8 +1,9 @@
 import Link from "next/link"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/lib/auth"
 
 export async function TopNavBar() {
-    // TODO: 세션 정보를 가져오는 로직을 작성합니다.
-    const session = null
+    const session = await getServerSession(authOptions)
 
     return <>
         <Link href="/" className="text-2xl font-bold">
@@ -24,11 +25,6 @@ export async function TopNavBar() {
                 <Link href="/auth/signin" className="hover:underline">
                     로그인
                 </Link>
-                // <button
-                //     className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                // >
-                //     로그인
-                // </button>
             )}
         </nav>
     </>

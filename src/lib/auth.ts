@@ -3,7 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { getAllUsers } from './db'
 import bcrypt from 'bcrypt'
 
-export const handlers = NextAuth({
+export const authOptions = {
     providers: [
         CredentialsProvider({
             credentials: {
@@ -35,10 +35,15 @@ export const handlers = NextAuth({
             }
         })
     ],
+    // session: {
+    //     strategy: `jwt`,
+    // },
     pages: {
         signIn: `/auth/signin`,
         signOut: `/auth/signout`,
         // error: `/auth/error`,
     },
     secret: process.env.NEXTAUTH_SECRET || `any-secret-key`,
-})
+}
+
+export const handlers = NextAuth(authOptions)
