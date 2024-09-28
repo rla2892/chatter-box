@@ -4,6 +4,7 @@ import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import bcrypt from "bcryptjs"
 import { BASE_URL } from "@/config"
+import { useRouter } from 'next/navigation'
 
 export default function SignUpForm() {
     const [name, setName] = useState<string>(``)
@@ -11,6 +12,7 @@ export default function SignUpForm() {
     const [password, setPassword] = useState<string>(``)
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -45,6 +47,7 @@ export default function SignUpForm() {
             }
 
             // 회원가입 성공 시 로그인 페이지로 이동
+            router.push(`/auth/signin`)
         } catch (err: any) {
             setError(err.message)
         } finally {
