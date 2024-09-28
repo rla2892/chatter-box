@@ -1,8 +1,4 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-
-export async function middleware(request: NextRequest) {
-    console.log(`Request URL: ${request.url}`)
+export async function middleware() {
 }
 
 // Don't invoke Middleware on some paths
