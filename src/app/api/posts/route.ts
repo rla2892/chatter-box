@@ -1,5 +1,5 @@
 import { PostType } from '@/types'
-import { DB_API_URL } from '../../../config'
+import { DB_API_URL } from '@/config'
 import { NextResponse } from 'next/server'
 
 export async function GET(
