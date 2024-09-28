@@ -1,3 +1,5 @@
+
+import 'server-only'
 import { DB_API_URL } from '@/config'
 import { PostType, UserType } from '@/types'
 
