@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { getAllUsers } from './db'
+import bcrypt from 'bcrypt'
 
 export const handlers = NextAuth({
     providers: [
@@ -16,7 +17,7 @@ export const handlers = NextAuth({
                     type: `password`,
                 },
             },
-            authorize: async (credentials, req) => {
+            authorize: async (credentials) => {
                 const allUsers = await getAllUsers()
                 const inputEmail = credentials?.email ?? ``
                 const inputPassword = credentials?.password ?? ``
@@ -24,7 +25,10 @@ export const handlers = NextAuth({
                 if (!user) {
                     return null
                 }
-                if (user.password !== inputPassword) {
+
+                const isValid = await bcrypt.compare(inputPassword, user.password)
+
+                if (!isValid) {
                     return null
                 }
                 return user
