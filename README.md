@@ -6,6 +6,49 @@
 
 **Chatter-Box** is a social media platform built with Next.js and TypeScript. It allows users to create and share posts, interact with others, and engage in real-time conversations. Leveraging modern web technologies, Chatter-Box aims to deliver a fast and responsive user experience.
 
+## ToDo List
+<!--
+ 0. url 에 state 저장
+ 0. session 쓰는 법. (server component 에서)
+ 0. zod 이용해 validation 추가
+ 1. Profile Page
+    - [ ] Edit Profile
+    - [ ] Profile Picture Upload
+    - [ ] Display Posts
+    - [ ] Display Followers/Following
+    - [ ] Follow/Unfollow Button
+    - [ ] Display User's Posts
+    - [ ] Display User's Followers/Following
+    - [ ] Follow/Unfollow Button
+    - [ ] Display User's Posts
+    - [ ] Display User's Followers/Following
+    - [ ] Follow/Unfollow Button
+2. Post Creation
+    - [ ] Create Post
+    - [ ] Add Text, Images, Videos
+    - [ ] Post to Feed
+    - [ ] Like/Unlike Post
+    - [ ] Comment on Post
+    - [ ] Reply to Comment
+3. Feed
+    - [ ] Display Real-Time Feed
+    - [ ] Like/Unlike Post
+    - [ ] Comment on Post
+    - [ ] Reply to Comment
+    - [ ] Follow/Unfollow User
+    - [ ] Real-Time Notifications
+4. Messaging
+    - [ ] 1:1 Chat
+    - [ ] Group Chat
+    - [ ] Real-Time Messaging
+5. Search & Tags
+    - [ ] Search for Users
+    - [ ] Search for Hashtags
+    - [ ] Search for Keywords
+    - [ ] Discover Content
+-->
+
+
 ## Key Features
 
 - **User Profile Management**: Create and edit profiles, upload profile pictures.
