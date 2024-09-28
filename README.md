@@ -139,42 +139,6 @@ Ensure that both the Next.js server and `json-server` are running to have a full
 
 Chatter-Box uses ESLint to maintain code quality and consistency.
 
-### ESLint Configuration File (`eslint.config.js`)
-
-The ESLint configuration uses the Flat Config system to incorporate Next.js and TypeScript-specific rules.
-
-```javascript
-// eslint.config.js
-import js from '@eslint/js';
-import next from 'eslint-config-next';
-import typescriptParser from '@typescript-eslint/parser';
-
-export default [
-  // Base ESLint recommended settings
-  js.configs.recommended,
-  
-  // Next.js recommended settings
-  next.configs.recommended,
-  
-  // Next.js TypeScript settings
-  next.configs.typescript,
-  
-  // Custom rules and parser options
-  {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
-      },
-    },
-    rules: {
-      // Add your custom rules here
-    },
-  },
-];
-```
 
 ### Running ESLint
 
@@ -185,37 +149,6 @@ To check your code for linting errors, use the provided script:
   ```
   npm run lint
   ```
-
-- Using Yarn:
-
-  ```
-  yarn lint
-  ```
-
-## Contributing
-
-Contributions are welcome! Please follow these steps to contribute:
-
-1. **Fork the Repository**: Click the "Fork" button at the top-right corner of the repository page.
-2. **Create a New Branch**: Create a branch for your feature or bugfix.
-
-    ```
-    git checkout -b feature/your-feature-name
-    ```
-
-3. **Make Changes**: Commit your changes with clear and descriptive messages.
-
-    ```
-    git commit -m "Add feature: your feature description"
-    ```
-
-4. **Push to the Branch**:
-
-    ```
-    git push origin feature/your-feature-name
-    ```
-
-5. **Create a Pull Request**: Go to the repository on GitHub and create a pull request from your branch.
 
 ## License
 
