@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Link from "next/link"
+import { TopNavBar } from "@/components/TopNavBar"
 
 export const metadata: Metadata = {
     title: `Chatter Box`,
@@ -12,7 +12,7 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const session = false // TODO: 세션 정보를 가져오는 로직을 작성합니다.
+
     // const signIn = () => {
     //     console.log(`로그인 버튼이 클릭되었습니다.`)
     // }
@@ -24,32 +24,7 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
-                    <Link href="/" className="text-2xl font-bold">
-                        Chatter-Box
-                    </Link>
-                    <nav className="flex items-center space-x-4">
-                        {session ? (
-                            <>
-                                <Link href="/profile" className="hover:underline">
-                                    프로필
-                                </Link>
-                                <button
-                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                                >
-                                    로그아웃
-                                </button>
-                            </>
-                        ) : (
-                            <Link href="/auth/signin" className="hover:underline">
-                                로그인
-                            </Link>
-                            // <button
-                            //     className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                            // >
-                            //     로그인
-                            // </button>
-                        )}
-                    </nav>
+                    <TopNavBar />
                 </header>
                 {/* 메인 콘텐츠 */}
                 <main className="flex-grow container mx-auto p-4">
