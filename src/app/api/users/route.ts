@@ -49,7 +49,7 @@ export async function PUT(
         }
 
         // 업데이트된 User 정보 저장
-        const newUserInfo = await updateUser(id, updatedUser)
+        await updateUser(id, updatedUser)
 
         return NextResponse.json(
             { message: `PUT 요청을 처리했습니다.` },
