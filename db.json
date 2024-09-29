@@ -1,32 +1,44 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "John Doe",
-            "email": "johndoe@test.com",
-            "password": "password"
-        }
-    ],
-    "posts": [
-        {
-            "id": 1,
-            "userId": 1,
-            "title": "Post 1",
-            "content": "This is the content of post 1",
-            "image": "",
-            "createdAt": "2022-02-01T12:00:00.000Z",
-            "likes": 0
-        },
-        {
-            "id": 2,
-            "userId": 1,
-            "title": "Post 2",
-            "content": "This is the content of post 2",
-            "image": "",
-            "createdAt": "2022-02-02T12:00:00.000Z",
-            "likes": 0
-        }
-    ],
-    "comments": [],
-    "messages": []
+  "users": [
+    {
+      "id": "368bf772-b23a-40f2-83cd-016ae06b18c5",
+      "name": "sangjin",
+      "email": "abc@qwer.com",
+      "password": "$2a$10$ro9ZNWg5BbDgGrLq5YsBIeNwt2P07jzYaFIMueMQs6Ze7tY74rfoe"
+    },
+    {
+      "id": "9f0bcd72-6f7a-481f-a9c0-e8f09d5ff396",
+      "name": "mimi",
+      "email": "mimi@qwer.com",
+      "password": "$2a$10$ioGwDuVzniXsbFpcPOpG7enaYE3lLYOT3n1lYsS1MLa4bQyJtf08."
+    },
+    {
+      "id": "73d05d7f-79f5-47a8-8523-7060a83c4400",
+      "name": "qiqi5",
+      "email": "qiqi@qwer.com",
+      "password": "$2a$10$ElpR9DHZFBKhxB4/Or/r3uAab2OCFQy2Mp1TNcG/GMtM8HoAGvMNe"
+    }
+  ],
+  "posts": [
+    {
+      "id": "5c70b7ee-d547-483d-acc1-3ae309861d5b",
+      "userId": "9f0bcd72-6f7a-481f-a9c0-e8f09d5ff396",
+      "title": "aaaa",
+      "content": "mymy",
+      "image": "",
+      "createdAt": "2024-09-29T19:59:29.087Z",
+      "likes": 0
+    },
+    {
+      "id": "1901114c-0c41-4b1e-a0be-2b21c6f868a6",
+      "userId": "9f0bcd72-6f7a-481f-a9c0-e8f09d5ff396",
+      "title": "qwe",
+      "content": "111",
+      "image": "",
+      "createdAt": "2024-09-29T20:00:53.006Z",
+      "likes": 0
+    }
+  ],
+  "comments": [],
+  "messages": []
 }
