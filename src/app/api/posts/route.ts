@@ -22,8 +22,17 @@ export async function POST(
     // 기존 데이터 가져오기
     const sessionObj = await getServerSession(authOptions)
     const userId = sessionObj?.user?.id ?? ``
+    if (!userId) {
+        return NextResponse.json({ message: "로그인이 필요합니다." }, { status: 401 })
+    }
 
     const { title, content } = await request.json()
+
+    // 기본적인 유효성 검사
+    if (!title || !content) {
+        return NextResponse.json({ message: "제목과 내용을 모두 입력해주세요." }, { status: 400 })
+    }
+
     const post = {
         id: uuidv4(),
         userId: userId,
