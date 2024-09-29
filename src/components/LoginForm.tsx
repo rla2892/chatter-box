@@ -1,4 +1,5 @@
 "use client"
+
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 
@@ -15,7 +16,8 @@ export default function LoginForm() {
 
         const res = await signIn(`credentials`, {
             // csrfToken, // CSRF 토큰은 자동으로 추가됨 (by next-auth signIn)
-            redirect: false,
+            redirect: true,
+            callbackUrl: `/`, // 로그인 성공 시 메인 페이지로 이동
             email,
             password,
         })
@@ -23,7 +25,7 @@ export default function LoginForm() {
         if (res?.error) {
             setError(res.error)
         } else {
-            // 로그인 성공 시 메인 페이지로 이동
+
             alert(`로그인 성공!`)
         }
 
