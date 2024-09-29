@@ -1,14 +1,14 @@
 import Post from "./Post"
-import { PostType } from "../types"
+import { ExpandedPostType } from "../types"
 
 export type PostListProps = {
-    posts: PostType[];
+    posts: ExpandedPostType[];
 };
 
 export default function PostList({ posts }: PostListProps) {
     return (
         <div>
-            {posts.map((post: PostType) => (
+            {posts.map((post) => (
                 <Post
                     key={post.id}
                     id={post.id}
@@ -18,6 +18,7 @@ export default function PostList({ posts }: PostListProps) {
                     image={post.image}
                     createdAt={post.createdAt}
                     likes={post.likes}
+                    user={post.user}
                 />
             ))}
         </div>

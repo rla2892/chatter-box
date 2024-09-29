@@ -1,7 +1,7 @@
 
 import "server-only"
 import { DB_API_URL } from "@/config"
-import { PostType, UserType } from "@/types"
+import { PostType, ExpandedPostType, UserType } from "@/types"
 
 export async function getAllUsers(): Promise<UserType[]> {
     const res = await fetch(`${DB_API_URL}/users`)
@@ -60,12 +60,12 @@ export async function updateUser(id: string, user: UserType): Promise<UserType> 
     return data
 }
 
-export async function getAllPosts(): Promise<PostType[]> {
-    const res = await fetch(`${DB_API_URL}/posts`)
+export async function getAllPosts(): Promise<ExpandedPostType[]> {
+    const res = await fetch(`${DB_API_URL}/posts?_expand=user`)
     if (!res.ok) {
         throw new Error(`게시글을 불러오는 데 실패했습니다.`)
     }
-    const data: PostType[] = await res.json()
+    const data: ExpandedPostType[] = await res.json()
     return data
 }
 

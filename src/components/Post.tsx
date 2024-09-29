@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { PostType } from "../types"
+import { ExpandedPostType } from "../types"
 
-type PostProps = PostType;
+type PostProps = ExpandedPostType;
 
-export default function Post({ id, userId, content, image, createdAt, likes }: PostProps) {
+export default function Post({ id, content, image, createdAt, likes, user }: PostProps) {
     const [likeCount, setLikeCount] = useState<number>(likes)
 
     const handleLike = async () => {
@@ -36,7 +36,7 @@ export default function Post({ id, userId, content, image, createdAt, likes }: P
             <div className="flex items-center mb-2">
                 {/* 사용자 정보 표시 (추가 구현 필요) */}
                 <div className="ml-2">
-                    <p className="font-semibold">사용자 {userId}</p>
+                    <p className="font-semibold">사용자 {(user?.name ?? "")}</p>
                     <p className="text-gray-500 text-sm">{new Date(createdAt).toLocaleString()}</p>
                 </div>
             </div>

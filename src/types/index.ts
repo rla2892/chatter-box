@@ -8,6 +8,10 @@ export type PostType = {
     likes: number;
 };
 
+export type ExpandedPostType = PostType & {
+    user: UserType;
+};
+
 // 사용자 타입도 GUID로 변경할 경우
 export type UserType = {
     id: string;
@@ -17,5 +21,5 @@ export type UserType = {
 };
 
 export type PostsResponse = {
-    posts: PostType[];
+    posts: ExpandedPostType[];
 };
