@@ -1,5 +1,5 @@
 import Post from "./Post"
-import { ExpandedPostType } from "../types"
+import { ExpandedPostType } from "@/types"
 
 export type PostListProps = {
     posts: ExpandedPostType[];

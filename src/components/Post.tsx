@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ExpandedPostType } from "../types"
+import { ExpandedPostType } from "@/types"
 
 type PostProps = ExpandedPostType;
 
