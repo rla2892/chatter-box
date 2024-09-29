@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
+import LogoutButton from "@/components/LogoutButton"
 
 export async function TopNavBar() {
     const session = await getServerSession(authOptions)
@@ -15,11 +16,7 @@ export async function TopNavBar() {
                     <Link href="/profile" className="hover:underline">
                         프로필
                     </Link>
-                    <button
-                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                    >
-                        로그아웃
-                    </button>
+                    <LogoutButton />
                 </>
             ) : (
                 <Link href="/auth/signin" className="hover:underline">
