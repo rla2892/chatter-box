@@ -1,6 +1,6 @@
 import { UserType } from "@/types"
 import { NextResponse } from "next/server"
-import { getAllUsers, registerUser } from "@/lib/db"
+import { getUserByEmail, registerUser } from "@/lib/db"
 
 export async function POST(
     request: Request
@@ -17,8 +17,8 @@ export async function POST(
         }
 
         // 이미 등록된 이메일인지 확인
-        const existingUsers = await getAllUsers()
-        const isExistingUser = existingUsers.some(user => user.email === email)
+        const existingUser = await getUserByEmail(email)
+        const isExistingUser = !!existingUser
 
         if (isExistingUser) {
             return NextResponse.json(

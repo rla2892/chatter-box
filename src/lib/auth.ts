@@ -1,6 +1,6 @@
 import NextAuth, { type Session } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { getAllUsers } from "./db"
+import { getUserByEmail } from "./db"
 import bcrypt from "bcrypt"
 
 export const authOptions = {
@@ -18,10 +18,10 @@ export const authOptions = {
                 },
             },
             authorize: async (credentials) => {
-                const allUsers = await getAllUsers()
                 const inputEmail = credentials?.email ?? ``
                 const inputPassword = credentials?.password ?? ``
-                const user = allUsers.find((user) => user.email === inputEmail)
+                const foundUser = await getUserByEmail(inputEmail)
+                const user = foundUser
                 if (!user) {
                     return null
                 }
