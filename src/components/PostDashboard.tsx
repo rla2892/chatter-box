@@ -4,7 +4,11 @@ import { BASE_URL } from "@/config"
 
 export default async function PostDashboard() {
     try {
-        const res = await fetch(`${BASE_URL}/api/posts`)
+        const res = await fetch(`${BASE_URL}/api/posts`, {
+            next: {
+                revalidate: 5 //  5초마다 데이터를 다시 가져옴
+            }
+        })
         if (!res.ok) {
             throw new Error(`게시글을 불러오는 데 실패했습니다.`)
         }
