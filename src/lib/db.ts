@@ -68,3 +68,18 @@ export async function getAllPosts(): Promise<PostType[]> {
     const data: PostType[] = await res.json()
     return data
 }
+
+export async function createPost(post: PostType): Promise<PostType> {
+    const res = await fetch(`${DB_API_URL}/posts`, {
+        method: `POST`,
+        headers: {
+            "Content-Type": `application/json`,
+        },
+        body: JSON.stringify(post),
+    })
+    if (!res.ok) {
+        throw new Error(`게시글 생성에 실패했습니다.`)
+    }
+    const data: PostType = await res.json()
+    return data
+}
