@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { type Session } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { getAllUsers } from "./db"
 import bcrypt from "bcrypt"
@@ -38,6 +38,20 @@ export const authOptions = {
     // session: {
     //     strategy: `jwt`,
     // },
+    callbacks: {
+        session: ({
+            session,
+            token,
+            user
+        }: {
+            session: Session
+            token: any
+            user: any
+        }
+        ) => {
+            return session
+        },
+    },
     pages: {
         signIn: `/auth/signin`,
         signOut: `/auth/signout`,
