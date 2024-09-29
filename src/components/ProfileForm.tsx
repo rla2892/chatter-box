@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { BASE_URL } from "@/config/index"
 import type { Session } from "next-auth"
 import bcrypt from "bcryptjs"
