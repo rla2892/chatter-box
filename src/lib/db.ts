@@ -1,7 +1,7 @@
 
-import 'server-only'
-import { DB_API_URL } from '@/config'
-import { PostType, UserType } from '@/types'
+import "server-only"
+import { DB_API_URL } from "@/config"
+import { PostType, UserType } from "@/types"
 
 export async function getAllUsers(): Promise<UserType[]> {
     const res = await fetch(`${DB_API_URL}/users`)
@@ -16,7 +16,7 @@ export async function registerUser(user: UserType): Promise<UserType> {
     const res = await fetch(`${DB_API_URL}/users`, {
         method: `POST`,
         headers: {
-            'Content-Type': `application/json`,
+            "Content-Type": `application/json`,
         },
         body: JSON.stringify(user),
     })

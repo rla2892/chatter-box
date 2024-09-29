@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { getAllPosts } from '@/lib/db'
+import { NextResponse } from "next/server"
+import { getAllPosts } from "@/lib/db"
 
 export async function GET(
     // request: Request, context: { params: Params }

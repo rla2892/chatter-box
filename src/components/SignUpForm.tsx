@@ -4,7 +4,7 @@ import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import bcrypt from "bcryptjs"
 import { BASE_URL } from "@/config"
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation"
 
 export default function SignUpForm() {
     const [name, setName] = useState<string>(``)

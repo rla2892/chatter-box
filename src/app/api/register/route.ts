@@ -1,6 +1,6 @@
 import { UserType } from "@/types"
-import { NextResponse } from 'next/server'
-import { getAllUsers, registerUser } from '@/lib/db'
+import { NextResponse } from "next/server"
+import { getAllUsers, registerUser } from "@/lib/db"
 
 export async function POST(
     request: Request

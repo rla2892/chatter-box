@@ -1,5 +1,5 @@
-import Post from './Post'
-import { PostType } from '../types'
+import Post from "./Post"
+import { PostType } from "../types"
 
 export type PostListProps = {
     posts: PostType[];

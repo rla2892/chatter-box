@@ -1,6 +1,6 @@
-import PostList from './PostList'
-import { PostsResponse } from '../types'
-import { BASE_URL } from '@/config'
+import PostList from "./PostList"
+import { PostsResponse } from "../types"
+import { BASE_URL } from "@/config"
 
 export default async function PostDashboard() {
     try {

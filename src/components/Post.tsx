@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { PostType } from '../types'
+import { useState } from "react"
+import Image from "next/image"
+import { PostType } from "../types"
 
 type PostProps = PostType;
 
@@ -17,7 +17,7 @@ export default function Post({ id, userId, content, image, createdAt, likes }: P
             const res = await fetch(`/api/posts/${id}`, {
                 method: `PUT`,
                 headers: {
-                    'Content-Type': `application/json`,
+                    "Content-Type": `application/json`,
                 },
                 body: JSON.stringify({ likes: updatedLikes }),
             })
