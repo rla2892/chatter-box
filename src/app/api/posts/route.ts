@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { getAllPosts, createPost } from "@/lib/db"
 import { v4 as uuidv4 } from "uuid"
 import { sessionHelper } from "@/lib/auth"
+import { revalidatePath } from "next/cache"
 
 export async function GET() {
     const postList = await getAllPosts()
@@ -43,6 +44,8 @@ export async function POST(
 
     try {
         const response = await createPost(post)
+        revalidatePath("/") // "/" 경로의 캐시를 다시 만듦
+
         return NextResponse.json(
             response,
             { status: 201 }

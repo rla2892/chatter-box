@@ -6,7 +6,7 @@ export default async function PostDashboard() {
     try {
         const res = await fetch(`${BASE_URL}/api/posts`, {
             next: {
-                revalidate: 5 //  5초마다 데이터를 다시 가져옴
+                revalidate: 60 //  60초마다 데이터를 다시 가져옴
             }
         })
         if (!res.ok) {
