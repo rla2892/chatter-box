@@ -8,11 +8,12 @@
 
 ## ToDo List
 <!--
- 0. url 에 state 저장
- 0. session 쓰는 법. (server component 에서)
+ 0. url 에 state 저장 - useSearchParam - next/navigation
  0. zod 이용해 validation 추가
+ 0. 각 페이지, api 에 인증 요구하기, 예외(main, login form)
+   
  1. Profile Page
-    - [ ] Edit Profile
+    - [v] Edit Profile
     - [ ] Profile Picture Upload
     - [ ] Display Posts
     - [ ] Display Followers/Following
