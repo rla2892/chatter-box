@@ -3,6 +3,15 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { getUserByEmail } from "./db"
 import bcrypt from "bcrypt"
 
+// For server-side session helpers
+import { getServerSession } from "next-auth"
+import type {
+    GetServerSidePropsContext,
+    NextApiRequest,
+    NextApiResponse,
+} from "next"
+
+
 export const authOptions = {
     providers: [
         CredentialsProvider({
@@ -76,3 +85,13 @@ export const authOptions = {
 }
 
 export const handlers = NextAuth(authOptions)
+
+// Use it in server contexts
+export function sessionHelper(
+    ...args:
+        | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+        | [NextApiRequest, NextApiResponse]
+        | []
+) {
+    return getServerSession(...args, authOptions)
+}

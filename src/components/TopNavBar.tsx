@@ -1,10 +1,9 @@
 import Link from "next/link"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth"
+import { sessionHelper } from "@/lib/auth"
 import LogoutButton from "@/components/LogoutButton"
 
 export async function TopNavBar() {
-    const session = await getServerSession(authOptions)
+    const session = await sessionHelper()
 
     return <>
         <Link href="/" className="text-2xl font-bold">

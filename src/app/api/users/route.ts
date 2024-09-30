@@ -1,8 +1,7 @@
 import { UserType } from "@/types"
 import { NextResponse } from "next/server"
 import { getUserById, updateUser } from "@/lib/db"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth"
+import { sessionHelper } from "@/lib/auth"
 
 // update user
 export async function PUT(
@@ -12,7 +11,7 @@ export async function PUT(
         const { name, email, password }: UserType = await request.json()
 
         // 기존 데이터 가져오기
-        const sessionObj = await getServerSession(authOptions)
+        const sessionObj = await sessionHelper()
         const id = sessionObj?.user?.id ?? ``
 
         if (!id) {

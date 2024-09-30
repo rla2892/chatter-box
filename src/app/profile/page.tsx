@@ -1,11 +1,10 @@
 import ProfileForm from "@/components/ProfileForm"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth"
+import { sessionHelper } from "@/lib/auth"
 import { getUserById } from "@/lib/db"
 import { redirect } from "next/navigation"
 
 export default async function ProfilePage() {
-    const sessionObj = await getServerSession(authOptions)
+    const sessionObj = await sessionHelper()
     const userInfo = await getUserById(sessionObj?.user?.id ?? ``)
     if (!userInfo) {
         redirect(`/auth/signin`)
