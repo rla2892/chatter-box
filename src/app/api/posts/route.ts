@@ -19,7 +19,6 @@ export async function GET() {
 export async function POST(
     request: Request
 ) {
-    // 기존 데이터 가져오기
     const sessionObj = await getServerSession(authOptions)
     const userId = sessionObj?.user?.id ?? ``
     if (!userId) {
