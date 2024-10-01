@@ -13,7 +13,7 @@ export default async function ProfilePage() {
     return (
         <>
             <h1 className="text-3xl font-bold mb-4">프로필</h1>
-            <ProfileForm session={sessionObj} userInfo={userInfo} />
+            <ProfileForm userInfo={userInfo} />
         </>
     )
 }

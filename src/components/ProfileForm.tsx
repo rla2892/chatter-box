@@ -1,33 +1,23 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { BASE_URL } from "@/config/index"
-import type { Session } from "next-auth"
 import bcrypt from "bcryptjs"
 import { UserType } from "@/types"
 
 export default function ProfileForm(
     {
-        session,
         userInfo,
     }: {
-        session: Session | null
         userInfo: UserType
     }
 ) {
-    const router = useRouter()
     const [name, setName] = useState<string>(userInfo.name || ``)
     const [email, setEmail] = useState<string>(userInfo.email || ``)
     const [password, setPassword] = useState<string>(``)
     const [message, setMessage] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
-
-    if (!session) {
-        // 클라이언트 측에서 로그인 페이지로 리디렉션
-        router.push(`/auth/signin`)
-    }
 
     const handleUpdate = async (e: React.FormEvent) => {
         e.preventDefault()

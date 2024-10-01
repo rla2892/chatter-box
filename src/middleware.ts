@@ -1,20 +1,18 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { getToken } from "next-auth/jwt"
 
 export async function middleware(
     request: NextRequest
 ) {
-    // Profile 페이지에서는 로그인이 필요함
-    // if (location.pathname === `/profile`) {
-    //     if (!session) {
-    //         return {
-    //             redirect: {
-    //                 destination: `/`,
-    //                 permanent: false,
-    //             },
-    //         }
-    //     }
-    // }
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+
+    if (request.nextUrl.pathname.startsWith("/profile") && !token) {
+        console.log(`redirect middleware`)
+        return NextResponse.redirect(new URL("/auth/signin", request.url))
+    }
+
+    return NextResponse.next()
 }
 
 // Don't invoke Middleware on some paths
