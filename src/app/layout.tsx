@@ -13,13 +13,6 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
 
-    // const signIn = () => {
-    //     console.log(`로그인 버튼이 클릭되었습니다.`)
-    // }
-    // const signOut = () => {
-    //     console.log(`로그아웃 버튼이 클릭되었습니다.`)
-    // }
-
     return (
         <html lang="en">
             <body>
