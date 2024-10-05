@@ -1,5 +1,5 @@
 import PostDashboard from "@/components/PostDashboard"
-import Link from "next/link" // 추가된 코드
+import Link from "next/link"
 
 export default function Home() {
 
