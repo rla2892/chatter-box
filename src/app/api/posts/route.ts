@@ -1,20 +1,8 @@
 import { NextResponse } from "next/server"
-import { getAllPosts, createPost } from "@/lib/db"
+import { createPost } from "@/lib/db"
 import { v4 as uuidv4 } from "uuid"
 import { sessionHelper } from "@/lib/auth"
 import { revalidatePath } from "next/cache"
-
-export async function GET() {
-    const postList = await getAllPosts()
-    // 최신 게시글이 위에 오도록 정렬
-    const sortedPosts = postList.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    return NextResponse.json(
-        {
-            posts: sortedPosts
-        },
-        { status: 200 }
-    )
-}
 
 export async function POST(
     request: Request
