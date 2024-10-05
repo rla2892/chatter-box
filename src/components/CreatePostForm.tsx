@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { createPostAction } from "@/lib/actions"
+import { createPostAction } from "@/lib/actions/posts"
 
 export default function CreatePostForm() {
     const router = useRouter()
