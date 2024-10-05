@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { BASE_URL } from "@/config/index"
 import bcrypt from "bcryptjs"
 import { UserType } from "@/types"
+import { updateUserAction } from "@/lib/actions/users"
 
 export default function ProfileForm(
     {
@@ -19,33 +19,18 @@ export default function ProfileForm(
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
 
-    const handleUpdate = async (e: React.FormEvent) => {
-        e.preventDefault()
+    const handleUpdate = async (formData: FormData) => {
         setSubmitting(true)
         setError(null)
         setMessage(null)
 
-        const updateData: any = { name, email }
-
         if (password) {
             const hashedPassword = await bcrypt.hash(password, 10)
-            updateData.password = hashedPassword
+            formData.set("password", hashedPassword)
         }
 
         try {
-            const res = await fetch(`${BASE_URL}/api/users`, {
-                method: `PUT`,
-                headers: {
-                    "Content-Type": `application/json`,
-                },
-                body: JSON.stringify(updateData),
-            })
-
-            if (!res.ok) {
-                const data = await res.json()
-                throw new Error(data.message || `프로필 업데이트에 실패했습니다.`)
-            }
-
+            await updateUserAction(formData)
             setMessage(`프로필이 성공적으로 업데이트되었습니다.`)
             if (password) {
                 // 비밀번호 변경 시 로그아웃 처리 필요할 수 있음
@@ -59,10 +44,11 @@ export default function ProfileForm(
     }
 
     return (<>
-        <form onSubmit={handleUpdate} className="flex flex-col max-w-lg">
+        <form action={handleUpdate} className="flex flex-col max-w-lg">
             <label className="mb-2">
                 이름
                 <input
+                    name="name"
                     type="text"
                     className="border p-2 mb-4 rounded w-full"
                     value={name}
@@ -73,6 +59,7 @@ export default function ProfileForm(
             <label className="mb-2">
                 이메일
                 <input
+                    name="email"
                     type="email"
                     className="border p-2 mb-4 rounded w-full"
                     value={email}
@@ -83,6 +70,7 @@ export default function ProfileForm(
             <label className="mb-4">
                 비밀번호 변경 (선택 사항)
                 <input
+                    name="password"
                     type="password"
                     className="border p-2 mb-4 rounded w-full"
                     value={password}
