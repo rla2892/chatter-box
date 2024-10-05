@@ -39,7 +39,7 @@ export default function CreatePostForm() {
                         className="border p-2 mb-4 rounded w-full"
                         name="title"
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => setTitle(e.target.value.toString().trim())}
                         placeholder="게시글 제목"
                         required
                     />

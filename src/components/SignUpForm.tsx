@@ -59,7 +59,7 @@ export default function SignUpForm() {
                     type="password"
                     className="border p-2 mb-4 rounded"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value.toString().trim())}
                     placeholder="비밀번호"
                     required
                 />

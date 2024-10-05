@@ -40,7 +40,7 @@ export default function LoginForm() {
                 type="email"
                 className="border p-2 mb-4 rounded w-full"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.toString().trim())}
                 required
             />
         </label>
@@ -51,7 +51,7 @@ export default function LoginForm() {
                 type="password"
                 className="border p-2 mb-4 rounded w-full"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.toString().trim())}
                 required
             />
         </label>

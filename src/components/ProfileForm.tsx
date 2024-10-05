@@ -74,7 +74,7 @@ export default function ProfileForm(
                     type="password"
                     className="border p-2 mb-4 rounded w-full"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value.toString().trim())}
                     placeholder="새 비밀번호 입력"
                 />
             </label>
