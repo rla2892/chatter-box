@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { createPostAction } from "@/lib/actions"
 
 export default function CreatePostForm() {
     const router = useRouter()
@@ -11,32 +12,17 @@ export default function CreatePostForm() {
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setSubmitting(true)
-        setError(null)
-
+    async function onCreatePost(formData: FormData) {
         try {
-            const res = await fetch("/api/posts", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    title,
-                    content,
-                }),
-            })
+            await createPostAction(formData)
 
-            if (!res.ok) {
-                const data = await res.json()
-                throw new Error(data.message || "게시글 작성에 실패했습니다.")
-            }
+            // Show success message
+            alert("게시글이 성공적으로 작성되었습니다.")
 
-            // 게시글 작성 후 홈 페이지로 리디렉션
             router.push("/")
-        } catch (err: any) {
-            setError(err.message)
+        } catch (error: any) {
+            const errorMessage = `게시글 작성에 실패했습니다. ${error?.message ?? "알 수 없는 오류가 발생했습니다."}`
+            setError(errorMessage)
         } finally {
             setSubmitting(false)
         }
@@ -45,12 +31,13 @@ export default function CreatePostForm() {
     return (
         <>
             <h1 className="text-3xl font-bold mb-4">게시글 작성</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col max-w-lg">
+            <form action={onCreatePost} className="flex flex-col max-w-lg">
                 <label className="mb-2">
                     제목
                     <input
                         type="text"
                         className="border p-2 mb-4 rounded w-full"
+                        name="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="게시글 제목"
@@ -61,6 +48,7 @@ export default function CreatePostForm() {
                     내용
                     <textarea
                         className="border p-2 mb-4 rounded w-full h-40"
+                        name="content"
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="게시글 내용"
