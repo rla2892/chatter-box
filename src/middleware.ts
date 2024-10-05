@@ -7,8 +7,23 @@ export async function middleware(
 ) {
     const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
 
-    if (request.nextUrl.pathname.startsWith("/profile") && !token) {
-        console.log(`redirect middleware`)
+    const needAuthUrlsFroGet = [
+        "/profile",
+    ]
+
+    if (needAuthUrlsFroGet.includes(request.nextUrl.pathname) && !token) {
+        return NextResponse.redirect(new URL("/auth/signin", request.url))
+    }
+
+    const needAuthUrlsForPost = [
+        "/api/posts",
+        "/api/users",
+        "/create-post",
+    ]
+
+    if (needAuthUrlsForPost.includes(request.nextUrl.pathname)
+        && request.method === "POST"
+        && !token) {
         return NextResponse.redirect(new URL("/auth/signin", request.url))
     }
 
