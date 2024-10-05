@@ -1,53 +1,31 @@
 "use client"
 
 import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
 import bcrypt from "bcryptjs"
-import { BASE_URL } from "@/config"
 import { useRouter } from "next/navigation"
+import { registerUserAction } from "@/lib/actions/users"
 
 export default function SignUpForm() {
+    const router = useRouter()
+
     const [name, setName] = useState<string>(``)
     const [email, setEmail] = useState<string>(``)
     const [password, setPassword] = useState<string>(``)
     const [error, setError] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState<boolean>(false)
-    const router = useRouter()
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
+    const handleSubmit = async (formData: FormData) => {
         setSubmitting(true)
         setError(null)
 
-        // GUID 생성
-        const id = uuidv4()
-
         // 비밀번호 해싱
         const hashedPassword = await bcrypt.hash(password, 10)
-
-        const newUser = {
-            id,
-            name,
-            email,
-            password: hashedPassword,
-        }
+        formData.set("password", hashedPassword)
 
         try {
-            const res = await fetch(`${BASE_URL}/api/register`, {
-                method: `POST`,
-                headers: {
-                    "Content-Type": `application/json`,
-                },
-                body: JSON.stringify(newUser),
-            })
-
-            if (!res.ok) {
-                const data = await res.json()
-                throw new Error(data.message || `회원가입에 실패했습니다.`)
-            }
-
-            // 회원가입 성공 시 로그인 페이지로 이동
-            router.push(`/auth/signin`)
+            await registerUserAction(formData)
+            alert("사용자가 성공적으로 등록되었습니다.")
+            router.push("/")
         } catch (err: any) {
             setError(err.message)
         } finally {
@@ -57,8 +35,9 @@ export default function SignUpForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="flex flex-col max-w-lg">
+            <form action={handleSubmit} className="flex flex-col max-w-lg">
                 <input
+                    name="name"
                     type="text"
                     className="border p-2 mb-4 rounded"
                     value={name}
@@ -67,6 +46,7 @@ export default function SignUpForm() {
                     required
                 />
                 <input
+                    name="email"
                     type="email"
                     className="border p-2 mb-4 rounded"
                     value={email}
@@ -75,6 +55,7 @@ export default function SignUpForm() {
                     required
                 />
                 <input
+                    name="password"
                     type="password"
                     className="border p-2 mb-4 rounded"
                     value={password}
@@ -85,10 +66,10 @@ export default function SignUpForm() {
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <button
                     type="submit"
-                    className={`bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ${submitting ? `opacity-50 cursor-not-allowed` : ``}`}
+                    className={`bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ${submitting ? "opacity-50 cursor-not-allowed" : ""}`}
                     disabled={submitting}
                 >
-                    {submitting ? `가입 중...` : `가입`}
+                    {submitting ? "등록 중..." : "회원가입"}
                 </button>
             </form>
         </>
