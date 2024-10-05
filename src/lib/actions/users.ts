@@ -4,7 +4,7 @@ import { registerUser, getUserByEmail, getUserById, updateUser } from "@/lib/db"
 import { UserType } from "@/types"
 import { v4 as uuidv4 } from "uuid"
 import { sessionHelper } from "@/lib/auth"
-import { newUserSchema } from "@/lib/validation"
+import { newUserSchema, updateUserSchema } from "@/lib/validation"
 
 /**
  * 서버 액션: 사용자 등록
@@ -52,14 +52,16 @@ export const registerUserAction = async (formData: FormData) => {
  * @throws 유효성 검사 실패 또는 사용자 업데이트 오류 시
  */
 export const updateUserAction = async (formData: FormData) => {
-    const name = formData.get("name") as string
-    const email = formData.get("email") as string
-    const password = formData.get("password") as string
+    const inputName = formData.get("name") as string
+    const inputEmail = formData.get("email") as string
+    const inputPassword = formData.get("password") as string
 
     // 유효성 검사
-    if (!name || !email) {
-        throw new Error("필수 필드가 누락되었습니다.")
+    const validationResult = updateUserSchema.safeParse({ name: inputName, email: inputEmail, password: inputPassword })
+    if (!validationResult.success) {
+        throw new Error(validationResult.error.errors.map(error => error.message).join("\n"))
     }
+    const { name, email, password } = validationResult.data
 
     // 세션에서 사용자 ID 가져오기
     const sessionObj = await sessionHelper()

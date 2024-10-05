@@ -4,6 +4,7 @@ import { createPost } from "@/lib/db"
 import { v4 as uuidv4 } from "uuid"
 import { sessionHelper } from "@/lib/auth"
 import { revalidatePath } from "next/cache"
+import { newPostSchema } from "@/lib/validation"
 
 /**
  * 서버 액션: 게시글 생성
@@ -20,13 +21,15 @@ export const createPostAction = async (formData: FormData) => {
         throw new Error("로그인이 필요합니다.")
     }
 
-    const title = formData.get("title") as string
-    const content = formData.get("content") as string
+    const inputTitle = formData.get("title") as string
+    const inputContent = formData.get("content") as string
 
     // 유효성 검사
-    if (!title.trim() || !content.trim()) {
-        throw new Error("제목과 내용을 모두 입력해주세요.")
+    const validationResult = newPostSchema.safeParse({ title: inputTitle, content: inputContent })
+    if (!validationResult.success) {
+        throw new Error(validationResult.error.errors.map(error => error.message).join("\n"))
     }
+    const { title, content } = validationResult.data
 
     const post = {
         id: uuidv4(),
