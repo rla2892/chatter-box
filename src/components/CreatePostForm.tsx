@@ -2,16 +2,8 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import type { Session } from "next-auth"
 
-export default function CreatePostForm(
-    {
-        session,
-    }: {
-        session: Session | null
-    }
-
-) {
+export default function CreatePostForm() {
     const router = useRouter()
 
     const [title, setTitle] = useState<string>("")
@@ -23,12 +15,6 @@ export default function CreatePostForm(
         e.preventDefault()
         setSubmitting(true)
         setError(null)
-
-        if (!session) {
-            setError("로그인이 필요합니다.")
-            setSubmitting(false)
-            return
-        }
 
         try {
             const res = await fetch("/api/posts", {
@@ -54,12 +40,6 @@ export default function CreatePostForm(
         } finally {
             setSubmitting(false)
         }
-    }
-
-    if (!session) {
-        // 로그인이 필요한 페이지임을 알리고 로그인 페이지로 리디렉션
-        router.push("/auth/signin")
-        return null
     }
 
     return (

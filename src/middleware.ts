@@ -9,6 +9,7 @@ export async function middleware(
 
     const needAuthUrlsFroGet = [
         "/profile",
+        "/create-post",
     ]
 
     if (needAuthUrlsFroGet.includes(request.nextUrl.pathname) && !token) {
@@ -18,7 +19,6 @@ export async function middleware(
     const needAuthUrlsForPost = [
         "/api/posts",
         "/api/users",
-        "/create-post",
     ]
 
     if (needAuthUrlsForPost.includes(request.nextUrl.pathname)
