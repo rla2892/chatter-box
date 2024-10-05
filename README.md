@@ -9,9 +9,8 @@
 ## ToDo List
 <!--
  0. url 에 state 저장 - useSearchParam - next/navigation
- 0. zod 이용해 validation 추가
- 0. 각 페이지, api 에 인증 요구하기, 예외(main, login form)
-   
+ 0. prisma 써보기
+    
  1. Profile Page
     - [v] Edit Profile
     - [ ] Profile Picture Upload
@@ -25,7 +24,7 @@
     - [ ] Display User's Followers/Following
     - [ ] Follow/Unfollow Button
 2. Post Creation
-    - [ ] Create Post
+    - [v] Create Post
     - [ ] Add Text, Images, Videos
     - [ ] Post to Feed
     - [ ] Like/Unlike Post
